@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    .image {
+      height: 200px;
+      width: 100%;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+
+
+  <!-- Nav Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid justify-content-between">
+      <a class="navbar-brand" href="#">Izzy Blog</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-lg-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Politics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Education</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Fashion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Technology</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sport</a>
+          </li>
+        </ul>
+        <a href="{% url 'account:signup'%}"><button class="border-warning rounded-pill float-right px-4 ">POST AN ARTICLE</button></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- profile update -->
+  <div class="container my-5 bg-light">
+    <h3 class="text-center my-3">Update Your Profile</h3>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-12 my-2">
+          <input type="text" name="first_name" placeholder="First Name" class="form-control">
+        </div>
+        <div class="col-12 my-2">
+          <input type="text" name="last_name" placeholder="Last Name" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 my-2">
+          <input type="number" name="contact" placeholder="Contact" class="form-control">
+        </div>
+        <div class="col-12 my-2">
+          <input type="file" name="img" placeholder="Image" class="form-control" required="">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 my-2 d-grid">
+          <button class="btn btn-dark my-4">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- footer -->
+  <footer class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-7">
+          <h4 class="mt-6 mx-4 my-4">News Letter Subscribe</h4>
+          <p class="mx-3">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut unde vero quaerat animi deserunt sint ab ea, porro consectetur sed.
+          </p>
+        </div>
+        <div class="col-12 col-sm-5">
+          <form method="post">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <input class="form-control rounded-pill  my-3 float-start" type="email" name="email" placeholder="Valid Email">
+                </div>
+                <div class="col-12">
+                  <button class="btn bg-white rounded-pill mb-4">submit</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="container text-center my-4">
+    <p>
+      Copyright &copy; 2023 || product of AstraCode 💓
+    </p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>
