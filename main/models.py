@@ -30,7 +30,7 @@ class Article(models.Model):
     created:time = models.DateTimeField(auto_now_add=True)
     updated:time = models.DateTimeField(auto_now=True)
     images = models.ImageField(upload_to="article_images")
-    likecount:int = models.IntegerField()
+    likecount:int = models.IntegerField(blank=True,null=True)
 
     class Meta:
         ordering = ("-created",)

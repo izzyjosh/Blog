@@ -148,3 +148,6 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': "QP1Hf5KTxRQiN-1TUUX3ZJDWhDY" 
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+LOGIN_REDIRECT_URL = "main:post"
+
