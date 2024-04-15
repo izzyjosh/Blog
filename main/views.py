@@ -11,11 +11,13 @@ def index(request:HttpRequest):
     categories:QuerySet = Category.objects.all()
     posts:QuerySet = Article.objects.all()
     editors_pic = Article.objects.all()[:3]
+    trending = Article.objects.order_by("?")[:3]
 
     context = {
             "categories":categories,
             "posts":posts,
-            "editors_pic":editors_pic
+            "editors_pic":editors_pic,
+            "trending":trending
             }
     return render(request,"index.html",context)
 
