@@ -6,7 +6,7 @@ from django.http import HttpRequest
 from .models import Article,Category
 from .forms import PostForm
 
-
+#index page view
 def index(request:HttpRequest):
     categories:QuerySet = Category.objects.all()
     posts:QuerySet = Article.objects.all()
