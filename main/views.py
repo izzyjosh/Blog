@@ -1,16 +1,24 @@
 # django import
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpRequest,HttpResponse
+from django.http import HttpRequest, HttpResponse
+from django.db.models import Q,F
 
 # my import
-from .models import Article, Category
+from .models import Article, Category,Comment
 from .forms import PostForm
 
 
 # index page view
 def index(request: HttpRequest) -> HttpResponse:
+    search: str = request.GET.get("search", "")
+    query_param: str = request.GET.get("cat","")
     categories: QuerySet = Category.objects.all()
-    posts: QuerySet = Article.objects.all()
+
+    posts: QuerySet = Article.objects.filter(
+        Q(title__icontains=search) | 
+        Q(author__username__icontains=search),
+        category__name__icontains=query_param,
+    )
 
     context = {
         "categories": categories,
@@ -19,21 +27,40 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "index.html", context)
 
 
-#when a category is specified
-def category(request:HttpRequest, cat_id:int) -> HttpResponse:
-    cat_post: Article = Article.objects.filter(category_id=cat_id)
+# viewing each post
+def post_detail(request: HttpRequest, post_id: int) -> HttpResponse:
+    post: Article = get_object_or_404(Article, pk=post_id)
+    post.likecount = F("likecount") + 1
+    post.save()
+    post.refresh_from_db()
+
+    comments: QuerySet = Comment.objects.filter(article=post)
+
+    related_posts: QuerySet = Article.objects.filter(category=post.category)
 
     context = {
-            "cat_posts":cat_post,
+            "post":post,
+            "comments":comments,
+            "related_posts":related_posts,
             }
-    return render(request,"index.html",context)
+
+    if request.method == "POST":
+        username:str = request.POST.get("name")
+        email:str = request.POST.get("email")
+        comment:str = request.POST.get("comment")
+
+        Comment.objects.create(
+                username=username,
+                email=email,
+                comment=comment,
+                article=post,)
+        
+        return render(request, "post.html", context)
+
+    return render(request, "post.html", context)
 
 
-#viewing each post
-def post_detail(request:HttpRequest,post_id:int) -> HttpResponse:
-    post: Article = get_object_or_404(Article,pk=post_id)
 
-    return render(request,"post.html",{"post":post})
 
 
 def profile(request: HttpRequest):

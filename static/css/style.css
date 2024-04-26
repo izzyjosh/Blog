@@ -171,20 +171,15 @@ header {
     position: absolute;
     color: var(--text-color);
     top: 25%;
-    max-width: 100%;
+    width: 100%;
+    line-height: 40px;
 
     h4 {
       font-size: 1.2em;
       font-weight: 600;
       padding: 10px;
-      text-align: center;
     }
-    p {
-      text-align: center;
-      font-weight: 400;
-      font-size: 12px;
-      line-height: 20px;
-    }
+
     a {
       background: var(--text-color);
       color: blue;
@@ -221,6 +216,7 @@ header {
   & img {
     border-radius: 20px;
     height: 300px;
+    object-fit: cover;
   }
   h5 {
     font-size: 1em;
@@ -334,17 +330,10 @@ footer {
   padding: 10px;
   margin: 10px;
 
-  h2 {
-    text-align: center;
-    margin-bottom: 10px;
-    font-family: Sans-Serif;
-    font-style: italic;
-  }
   .writer {
     display: flex;
     justify-content: flex-start;
     gap: 10px;
-
     float: left;
 
     img {
@@ -397,45 +386,47 @@ footer {
 }
 
 .comments {
+  margin-bottom: 20px;
   h5 {
     text-align: center;
-    font-size: 1.2em;
-    margin: 20px 0 10px 0;
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 30px 0 10px 0;
   }
 
   .comm {
-    display: flex;
-    justify-content: space-between;
-
     box-shadow: hsl(0, 0%, 70%) 0 0 10px;
-    margin: 10px 0;
+    margin: 20px 0;
+    min-height: 80px;
 
     img {
       height: 60px;
       width: 60px;
-      margin: 5px auto;
+      margin: 10px;
       border-radius: 30px;
+      float: left;
     }
     .content {
-      margin: 5px auto;
+      margin: 10px;
+      padding: 15px 0 0 0;
       font-size: 0.8em;
     }
   }
 }
-
-.related {
+.aside {
   margin: 10px;
   padding: 10px;
-
+}
+.related {
   a {
     color: var(--header-text-color);
   }
 
   h5 {
-    font-size: 1em;
+    font-size: 1.3em;
     font-weight: 600;
     text-align: center;
-    margin: 10px 0 20px 0;
+    margin: 30px 0 0 0;
   }
 
   .post {
@@ -445,7 +436,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     gap: 5px;
-    height: 100px;
+    height: 130px;
     margin: 30px 0;
 
     img {
@@ -453,7 +444,7 @@ footer {
       height: 100%;
     }
     .content {
-      padding: 10px 5px;
+      padding: 20px 5px;
       font-size: 0.8em;
       margin: 10px 0;
     }
@@ -528,6 +519,7 @@ footer {
     display: grid;
     grid-template-columns: 60% 40%;
     grid-gap: 10px;
+    max-height: 100vh;
   }
   /* end of post style */
 }
