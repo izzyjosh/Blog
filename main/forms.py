@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 
 #my import 
-from .models import Comment, Article
+from .models import Comment, Article, Subscriber, EmailNewsletter
 
 #third party import 
 from ckeditor.widgets import CKEditorWidget
@@ -71,7 +71,7 @@ class PostForm(forms.ModelForm):
             label = "CONCLUSION",
             required = True,
             help_text = "",
-            widget = forms.Textarea(attrs={
+            widget = forms.TextInput(attrs={
                 "name":"conclusion",
                 "type":"text",
                 "class":"form-control",
@@ -89,3 +89,21 @@ class PostForm(forms.ModelForm):
                     }),
                 }
 
+
+# EmailNewsletter Form 
+class SubscriberForm(forms.ModelForm):
+
+    email:str = forms.CharField(
+            required = True,
+            help_text = "",
+            widget = forms.TextInput(attrs={
+                "name":"email",
+                "type":"email",
+                "placeholder":"Email",
+                "class":"input",
+                }))
+
+
+    class Meta:
+        model = Subscriber
+        fields = ("email",)

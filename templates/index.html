@@ -138,10 +138,12 @@
         </p>
       </div>
       <div class="form">
-        <form action="">
+        {% for message in messages %} {{ message }} {% endfor %}
+        <form method="post">
+          {% csrf_token %}
           <div class="input">
             <i class="bi bi-email"></i>
-            <input type="email" placeholder="Email" />
+            {{ form.email }}
           </div>
           <button>Subscribe</button>
         </form>
@@ -149,7 +151,7 @@
     </footer>
 
     <div class="last">
-      <button><a href="#">Signup</a></button>
+      <button><a href="{% url 'account:login' %}">Signup</a></button>
       <p>&copy;2024: All Right Reserved</p>
     </div>
 

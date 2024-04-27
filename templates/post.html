@@ -89,7 +89,11 @@
           <h5>Comments</h5>
           {% for comment in comments %}
           <div class="comm">
+            {% if user is None %}
             <img src="{% static 'images/null_photo.png' %}" alt="" />
+            {% else %}
+            <img src="{{ user.profile_pic.url }}" alt="" />
+            {% endif %}
             <div class="content">
               <h6>{{ comment.username }}</h6>
               <p>{{ comment.comment}}</p>
@@ -101,8 +105,8 @@
         <div class="related">
           <h5>Related Posts</h5>
           {% for rel_post in related_posts %}
-          <a href="{% url 'main:post' rel_post.id %}"
-            ><div class="post">
+          <a href="{% url 'main:post' rel_post.id %}">
+            <div class="post">
               <img src="{{ rel_post.images.url}}" alt="" />
               <div class="content">
                 <h6>{{ rel_post.title }}</h6>
@@ -114,27 +118,9 @@
         </div>
       </div>
     </div>
-    <footer>
-      <div class="text">
-        <h3>Subscribe For New Content</h3>
-        <p>
-          By Becoming A Member Of Our Blog, You Have Access To Articles And
-          Conrent
-        </p>
-      </div>
-      <div class="form">
-        <form action="" method="post">
-          <div class="input">
-            <i class="bi bi-email"></i>
-            <input type="email" placeholder="Email" />
-          </div>
-          <button>Subscribe</button>
-        </form>
-      </div>
-    </footer>
 
     <div class="last">
-      <button><a href="#">Signup</a></button>
+      <button><a href="{% url 'account:login' %}">Signup</a></button>
       <p>&copy;2024: All Right Reserved</p>
     </div>
 

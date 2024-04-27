@@ -35,9 +35,8 @@ class Article(models.Model):
     class Meta:
         ordering = ("-created",)
 
-    def __str__(self):
+    def __str__(selfi) -> str:
         return f"{self.author.username} : {self.title}"
-
 
 
 class Comment(models.Model):
@@ -54,4 +53,19 @@ class Comment(models.Model):
         return f"{self.username}: {self.comment}"
 
 
+# Newletter models 
 
+class Subscriber(models.Model):
+    email: str = models.EmailField()
+
+    def __str__(self) -> str:
+        return self.email
+
+
+class EmailNewsletter(models.Model):
+    subject: str = models.CharField(max_length=500)
+    message: str = RichTextField()
+    recepient: Subscriber = models.ManyToManyField(Subscriber)
+
+    def __str__(self) -> str:
+        return self.subject
