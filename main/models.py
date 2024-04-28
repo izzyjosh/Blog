@@ -35,7 +35,7 @@ class Article(models.Model):
     class Meta:
         ordering = ("-created",)
 
-    def __str__(selfi) -> str:
+    def __str__(self) -> str:
         return f"{self.author.username} : {self.title}"
 
 
