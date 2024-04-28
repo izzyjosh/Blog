@@ -14,7 +14,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
         "localhost",
-        ".now.sh",
         ".onrender.com",
         ]
 
@@ -74,21 +73,19 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-"""
-DATABASES = {
-    'default': dj_database_url.config(
-        default = os.environ.get("DATABASE_URL"),
-        conn_max_age=600
-    )
-}
 
+DATABASES['default'] = dj_database_url.config(
+    default=os.environ.get("DATABASE_URL"),
+    conn_max_age=600,
+    conn_health_checks=True,
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -123,19 +120,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-"""
+
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles_build","static")
 STATICFILES_DIRS = (os.path.join(BASE_DIR,"static"),)
-"""
 
+"""
 STATIC_URL = '/static/'
 
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+"""
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
