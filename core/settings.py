@@ -14,8 +14,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
         "localhost",
-        ".vercel.app",
-        ".now.sh"
+        ".now.sh",
+        ".onrender.com",
         ]
 
 AUTH_USER_MODEL = "account.UserModel"
